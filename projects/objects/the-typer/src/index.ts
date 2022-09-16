@@ -1,6 +1,36 @@
 // Write your types here! ✨
 
-let current = {
+export type PlaceBase = {
+	name: string;
+	proximity: number;
+	treasure?: string;
+};
+
+export type PathPlace = PlaceBase & {
+	type: "path";
+	through: Place;
+};
+
+export type StreamPlace = PlaceBase & {
+	type: "stream";
+	area: string;
+	downstream: Place;
+	upstream: Place;
+	around?: Place;
+};
+
+export type ClearingPlace = PlaceBase & {
+	type: "clearing";
+	through: Place;
+};
+
+export type TownPlace = PlaceBase & {
+	type: "town";
+}
+
+export type Place = PathPlace | StreamPlace | ClearingPlace | TownPlace;
+
+let current: Place = {
 	name: "Woesong Bridge",
 	proximity: 100,
 	through: {
